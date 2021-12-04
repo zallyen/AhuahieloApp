@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block title %}Actualizar usuario{% endblock %} {% block body %}
+<link rel="stylesheet" href="{{url_for('static', filename='forms.css')}}">
+<br><br>
+<h1>Actualizar usuario</h1>
+<br><br>
+<form method="POST" action="/admin/update-user/{{updateUser.id}}">
+    <input type="text" name="name" placeholder="Nombre" id="" value="{{updateUser.name}}" required pattern="^[A-Za-zÑñ ]{0,50}$" title="Solo letras, máximo 50 caracteres."><br><br>
+    <input type="email" name="email" placeholder="Email" id="" value="{{updateUser.email}}" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"><br><br>
+    <input type="text" name="address" placeholder="Dirección" id="" value="{{updateUser.address}}" required pattern="^[A-Za-zñÑ #0-9]{0,40}$" title="Solo letras y números, máximo 40 caracteres."><br><br>
+    <input type="number" name="telephone" placeholder="Teléfono" id="" value="{{updateUser.telephone}}" pattern="^[0-9]{10,15}$" title="Solo números, minimo 10 caracteres y máximo 15."><br><br>
+    <select name="type" id="type">
+        <option value="{{updateUser.type}}">{{updateUser.type}}</option>
+       
+        <option value="{{oType}}">{{oType}}</option>
+    </select><br><br>
+    <input type="password" name="password" placeholder="Contraseña" id="" value="{{updateUser.password}}" required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&+/])[A-Za-z\d@$!%*#?&]{8,30}$" title="Mínimo 8 caracteres y máximo 30, al menos una letra, un número y un carácter especial(@$!%*#?&)."><br><br>
+    <button type="submit ">Actualizar usuario</button>
+</form>
+
+<br><br><br> {% endblock %}

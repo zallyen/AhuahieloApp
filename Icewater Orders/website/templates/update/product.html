@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block title %}Actualizar producto{% endblock %} {% block body %}
+<link rel="stylesheet" href="{{url_for('static', filename='forms.css')}}">
+<br><br>
+<h1>Actualizar producto</h1>
+<br><br>
+<form method="POST" action="/admin/update-product/{{updateProduct.id}}">
+    <input type="text" name="name" placeholder="Nombre" value="{{updateProduct.name}}" required pattern="^[0-9A-Za-zÑñ ]{0,50}$" title="Solo letras, máximo 50 caracteres."><br><br>
+    <input type="number " name="price" placeholder="Precio " id=" " value="{{updateProduct.price}}" required min="0" max="100000"><br><br>
+    <input type="number " name="inventory" placeholder="Inventario " id=" " value="{{updateProduct.inventory}}" required min="0" max="100000"><br><br>
+    <button type="submit ">Actualizar producto</button>
+</form>
+
+<br><br><br> {% endblock %}

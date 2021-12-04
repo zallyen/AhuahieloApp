@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block title %}Order{% endblock %} {% block body %}
+<br><br>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+    }
+</style>
+<div class="cont">
+<h1>Artículo: {{get_product(order.productId).name}}</h1><br>
+<h1>Dirección: {{order.address}}</h1><br>
+<h1>Precio unitario: ${{order.total//order.quantity}}</h1><br>
+<h1>Cantidad: {{order.quantity}}</h1><br>
+<h1>Total: ${{order.total}}</h1><br> 
+</div>
+<br><br>
+<a href="/">
+    <button>
+        Regresar
+    </button>
+</a>
+{% endblock %}

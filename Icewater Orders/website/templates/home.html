@@ -1,0 +1,115 @@
+{% extends 'base.html' %} {% block title %}Ahuahielo{% endblock %} {% block body %}
+<a href="/logout">
+    <button class="right">Cerrar sesión</button>
+</a>
+{% if user and user.type == 'Administrador' %}
+<a href="/admin" target=”_blank”>
+    <button class="right">Admin</button>
+</a>
+{% endif %}
+
+<br><br><br><br>
+<h1 class="center">Hola {{user.name}}</h1>
+<br><br>
+<style>
+    body {
+        padding-left: 30px;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .products {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /*overflow-x: auto;*/
+        flex-wrap: wrap;
+    }
+    
+    .product {
+        margin: 20px;
+        text-align: center;
+        border-radius: 22px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        min-width: 250px;
+        justify-content: center;
+        background-color: #FFE3B3;
+        color: black;
+        font-weight: bolder;
+        
+    }
+    .product:hover{
+        background-color: #27798F;
+        color: white;
+    }
+    
+    .product-name {
+        margin: 20px;
+    }
+
+    .container {
+        height:100%;
+        width: 100%;
+    }
+    .containerProduct {
+        height: 50%;
+        width: 100%;
+    }
+    .containerOrder {
+        height: 50%;
+        width: 100%;
+    }
+    .buttonH{
+        background-color: #FFE3B3;
+        border: none;
+        color: black;
+        margin: 0;
+        height: 200px;
+        min-width: 250px;
+    }
+    .buttonH:hover{
+        background-color: #27798F;
+        border: none;
+        color: white;
+        margin: 0;
+        height: 200px;
+    }
+</style>
+<div class="container">
+<div class="containerProduct">
+<h3 class="center">Productos</h3>
+<div class="products">
+    {% for product in products %}
+    <div class="product">
+            
+            <a href="/product/{{product.id}}">
+                <button class="buttonH">
+                    <h2 class="product-name">{{product.name}}</h2>
+                    <h2 class="price">${{product.price}}</h2>
+                    <b>Comprar</b>
+                </button>
+            </a>
+    </div>
+    {% endfor %}
+</div>
+</div>
+<div class="containerOrder">
+<h3 class="center">Pedidos</h3>
+<div class="products">
+    {% for product in orders %}
+    <div class="product">
+            
+            <a href="/order/{{product.id}}">
+                <button class="buttonH">
+                    <h2>{{product.address}}</h2>
+                    <h2 class="price">${{product.total}}</h2>
+                    <b>Ver</b>
+                </button>
+            </a>
+    </div>
+    {% endfor %}
+</div>
+</div>
+</div>
+<br><br> {% endblock %}

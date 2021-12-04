@@ -1,0 +1,189 @@
+{% extends 'base.html' %} {% block title %}Tablero del administrador{% endblock %} {% block body %}
+<script>
+    function deletes(ent, name) {
+        if (confirm('Esta seguro ue desea eliminar el ' + ent + ' ' + name) == true) {
+            alert("Elemento elimando");
+        } else {
+            return false;
+        }
+    }
+</script>
+<div>
+    <a href="/logout">
+        <button class="right">Cerrar sesión</button>
+    </a>
+</div><br><br><br><br>
+<div>
+    <center>
+        <h3>Usuarios</h3>
+        <a href="/admin/add-user">
+            <button>Agregar usuario</button>
+        </a>
+        <div style="overflow-x:auto;">
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Tipo</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+
+                {% for pilot in users %}
+                <tr>
+                    <td>{{pilot.name}}</td>
+                    <td>{{pilot.email}}</td>
+                    <td>{{pilot.telephone}}</td>
+                    <td>{{pilot.address}}</td>
+                    <td>{{pilot.type}}</td>
+                    <td>
+                        <a href="/admin/update-user/{{pilot.id}}">
+                            <button>
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <form action="/admin/delete-user/{{pilot.id}}" method="post">
+                            <button type="submit" value="{{pilot.id}}" onClick="return deletes('usuario','{{pilot.name}}');" />
+                            <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <br><br><br>
+        <h3>Productos</h3>
+        <a href="/admin/add-product">
+            <button>Agregar producto</button>
+        </a>
+        <div style="overflow-x:auto;">
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Inventario</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+
+                {% for pilot in products %}
+                <tr>
+                    <td>{{pilot.name}}</td>
+                    <td>{{pilot.price}}</td>
+                    <td>{{get_bought(pilot.id)}}/{{pilot.inventory}}</td>
+                    <td>
+                        <a href="/admin/update-product/{{pilot.id}}">
+                            <button> <i class="fas fa-pencil-alt"></i></button>
+                        </a>
+                    </td>
+                    <td>
+                        <form action="/admin/delete-product/{{pilot.id}}" method="post">
+                            <button type="submit" value="{{pilot.id}}" onClick="return deletes('producto','{{pilot.name}}');" />
+                            <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <br><br><br>
+        <h3>Empleados</h3>
+        <a href="/admin/add-employee">
+            <button>Agregar empleado</button>
+        </a>
+        <div style="overflow-x:auto;">
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Salario</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+
+                {% for pilot in employees %}
+                <tr>
+                    <td>{{pilot.name}}</td>
+                    <td>{{pilot.address}}</td>
+                    <td>{{pilot.telephone}}</td>
+                    <td>{{pilot.email}}</td>
+                    <td>{{pilot.date}}</td>
+                    <td>{{pilot.salary}}</td>
+                    <td>
+                        <a href="/admin/update-employee/{{pilot.id}}">
+                            <button><i class="fas fa-pencil-alt"></i></button>
+                        </a>
+                    </td>
+                    <td>
+                        <form action="/admin/delete-employee/{{pilot.id}}" method="post">
+                            <button type="submit" value="{{pilot.id}}" onClick="return deletes('empleado','{{pilot.name}}');">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <br><br><br>
+
+        <h3>Pedidos</h3><br><br>
+        <div style="overflow-x:auto;">
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Dirección de entrega</th>
+                        <th>Usuario</th>
+                        <th>Nombre del producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>Fecha</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+
+                {% for pilot in orders %}
+                <tr>
+                    <td>{{pilot.address}}</td>
+                    <td>{{get_user(pilot.customerId).name}}</td>
+                    <td>{{get_product(pilot.productId).name}}</td>
+                    <td>{{pilot.total//pilot.quantity}}</td>
+                    <td>{{pilot.quantity}}</td>
+                    <td>{{pilot.total}}</td>
+                    <td>{{pilot.date}}</td>
+                    <td>
+                        <form action="/admin/delete-order/{{pilot.id}}" method="post">
+                            <button type="submit" value="{{pilot.id}}" onClick="return deletes('pedido','{{get_product(pilot.id).name}}');" />
+                            <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <br><br><br>
+    </center>
+</div>
+
+<br><br><br> {% endblock %}

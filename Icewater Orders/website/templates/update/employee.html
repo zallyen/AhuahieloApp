@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block title %}Actualizar empleado{% endblock %} {% block body %}
+<link rel="stylesheet" href="{{url_for('static', filename='forms.css')}}">
+<br><br>
+<h1>Actualizar empleado</h1>
+<br><br>
+<form method="POST" action="/admin/update-employee/{{updateEmployee.id}}">
+    <input type="text" name="name" placeholder="Nombre" value="{{updateEmployee.name}}" required pattern="^[A-Za-zÑñ ]{0,50}$" title="Solo letras, máximo 50 caracteres."><br><br>
+    <input type="text" name="address" placeholder="Dirección" value="{{updateEmployee.address}}" required pattern="^[A-Za-zñÑ #0-9]{0,40}$" title="Solo letras y números, máximo 40 caracteres."><br><br>
+    <input type="text" name="telephone" placeholder="Teléfono" value="{{updateEmployee.telephone}}" required pattern="^[0-9]{10,15}$" title="Solo números, minimo 10 caracteres y máximo 15."><br><br>
+    <input type="email" name="email" placeholder="Email" id="" value="{{updateEmployee.email}}" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"><br><br>
+    <input type="date" name="date" placeholder="Fecha de nacimiento" id="" value="{{updateEmployee.date}}"><br><br>
+    <input type="number" name="salary" placeholder="Salario" id="" value="{{updateEmployee.salary}}" required min="0" max="1000000"><br><br>
+    <button type="submit ">Actualizar empleado</button>
+</form>
+
+<br><br><br> {% endblock %}

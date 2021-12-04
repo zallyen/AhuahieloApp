@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block title %}Actualizar pedido{% endblock %} {% block body %}
+<link rel="stylesheet" href="{{url_for('static', filename='forms.css')}}">
+<br><br>
+<h1>Actualizar pedido</h1>
+<br><br>
+<form method="POST" action="/admin/update-order/{{updateOrder.id}}">
+    <select name="customerId" id="customerId" form="carform">
+        {% for user in users %}
+        <option value="{{user.id}}">{{user.name}}</option>
+        {% endfor %}
+        <option value="{{updateOrder.customerId}}" selected>{{get_user(updateOrder.customerId).name}}</option>
+    </select>
+    <select name="productId" id="productId" form="carform">
+        {% for product in products%}
+        <option value="{{product.id}}">{{product.name}}</option>
+        {% endfor %}
+        <option value="{{updateOrder.productId}}" selected>{{get_product(updateOrder.productId).name}}</option>
+    </select>
+    <input type="hidden" value="{{get_product(updateOrder.productId).price}}" id="price">
+    <input type="number " name="quantity" placeholder="Cantidad" id="quantity" value="{{updateOrder.quantity}}" required min="0" max="100000"><br><br>
+    <output name="resultado" for="price*quantity"></output><br><br>
+    <input type="number " name="total" placeholder="Total" id=" " value="{{updateOrder.total}}" required min="0" max="100000"><br><br>
+
+
+    <button type="submit ">Actualizar pedido</button>
+</form>
+
+<br><br><br> {% endblock %}
