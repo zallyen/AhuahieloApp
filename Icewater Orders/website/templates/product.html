@@ -6,7 +6,11 @@
 <br><br>
 <form method="post">
     <input type="number" placeholder="Cantidad" name="quantity" max="{{product.inventory}}" min="1" required><br><br>
-    <input type="text" name="address" placeholder="Dirección" id="" required pattern="^[A-Za-zñÑ #0-9]{0,40}$" title="Solo letras y números, máximo 40 caracteres."><br><br>
+    <input type="text" name="street" placeholder="Calle" id="" required pattern="^[A-Za-zñÑ ]{0,40}$" title="Solo letras y números, máximo 40 caracteres."><br><br>
+    <input type="text" name="number" placeholder="Número" id="" required pattern="^[0-9]{0,10}$" title="Solo números, máximo 10 caracteres."><br><br>
+    <input type="text" name="colony" placeholder="Colonia" id="" required pattern="^[A-Za-zñÑ ]{0,40}$" title="Solo letras y números, máximo 40 caracteres."><br><br>
+    <input type="text" name="city" placeholder="Municipio" id="" required pattern="^[A-Za-zñÑ #0-9]{0,40}$" title="Solo letras y números, máximo 40 caracteres."><br><br>
+    <input type="text" name="codigoPostal" placeholder="Código Postal" id="" required pattern="^[0-9]{5,5}$" title="Solo números, máximo 10 caracteres."><br><br>
     <button type="submit">Realizar pedido</button>
 </form>
 

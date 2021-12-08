@@ -8,11 +8,11 @@
         }
     }
 </script>
-<div>
+<div class="btnHeadContainer">
     <a href="/logout">
         <button class="right">Cerrar sesión</button>
     </a>
-</div><br><br><br><br>
+</div><br><br><br>
 <div>
     <center>
         <h3>Usuarios</h3>
@@ -27,7 +27,8 @@
                         <th>Email</th>
                         <th>Teléfono</th>
                         <th>Dirección</th>
-                        <th>Tipo</th>
+                        <th>Código postal</th>
+                        <th>RFC</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -35,11 +36,12 @@
 
                 {% for pilot in users %}
                 <tr>
-                    <td>{{pilot.name}}</td>
+                    <td>{{pilot.name}} {{pilot.lastname1}} {{pilot.lastname2}}</td>
                     <td>{{pilot.email}}</td>
                     <td>{{pilot.telephone}}</td>
-                    <td>{{pilot.address}}</td>
-                    <td>{{pilot.type}}</td>
+                    <td>{{pilot.street}} {{pilot.number}}, {{pilot.colony}}, {{pilot.city}}</td>
+                    <td>{{pilot.codigoPostal}}</td>
+                    <td>{{pilot.rfc}}</td>
                     <td>
                         <a href="/admin/update-user/{{pilot.id}}">
                             <button>
@@ -68,7 +70,8 @@
             <table class="content-table">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
+                        <th>Presentación</th>
+                        <th>Peso(Kg.)</th>
                         <th>Precio</th>
                         <th>Inventario</th>
                         <th>Editar</th>
@@ -78,7 +81,8 @@
 
                 {% for pilot in products %}
                 <tr>
-                    <td>{{pilot.name}}</td>
+                    <td>{{pilot.presentation}}</td>
+                    <td>{{pilot.weight}}</td>
                     <td>{{pilot.price}}</td>
                     <td>{{get_bought(pilot.id)}}/{{pilot.inventory}}</td>
                     <td>
@@ -108,10 +112,11 @@
                 <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Dirección</th>
-                        <th>Teléfono</th>
                         <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
                         <th>Fecha de nacimiento</th>
+                        <th>NSS</th>
                         <th>Salario</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
@@ -120,11 +125,12 @@
 
                 {% for pilot in employees %}
                 <tr>
-                    <td>{{pilot.name}}</td>
-                    <td>{{pilot.address}}</td>
-                    <td>{{pilot.telephone}}</td>
+                    <td>{{pilot.name}} {{pilot.lastname1}} {{pilot.lastname2}}</td>
                     <td>{{pilot.email}}</td>
+                    <td>{{pilot.telephone}}</td>
+                    <td>{{pilot.street}} {{pilot.number}}, {{pilot.colony}}, {{pilot.city}}</td>
                     <td>{{pilot.date}}</td>
+                    <td>{{pilot.nss}}</td>
                     <td>{{pilot.salary}}</td>
                     <td>
                         <a href="/admin/update-employee/{{pilot.id}}">
@@ -151,8 +157,9 @@
                 <thead>
                     <tr>
                         <th>Dirección de entrega</th>
+                        <th>Código postal</th>
                         <th>Usuario</th>
-                        <th>Nombre del producto</th>
+                        <th>Producto</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
                         <th>Total</th>
@@ -163,9 +170,10 @@
 
                 {% for pilot in orders %}
                 <tr>
-                    <td>{{pilot.address}}</td>
+                    <td>{{pilot.street}} {{pilot.number}}, {{pilot.colony}}, {{pilot.locality}}</td>
+                    <td>{{pilot.codigoPostal}}</td>
                     <td>{{get_user(pilot.customerId).name}}</td>
-                    <td>{{get_product(pilot.productId).name}}</td>
+                    <td>{{get_product(pilot.productId).presentation}} {{get_product(pilot.productId).weight}}</td>
                     <td>{{pilot.total//pilot.quantity}}</td>
                     <td>{{pilot.quantity}}</td>
                     <td>{{pilot.total}}</td>

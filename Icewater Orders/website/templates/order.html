@@ -8,11 +8,12 @@
     }
 </style>
 <div class="cont">
-<h1>Artículo: {{get_product(order.productId).name}}</h1><br>
-<h1>Dirección: {{order.address}}</h1><br>
-<h1>Precio unitario: ${{order.total//order.quantity}}</h1><br>
-<h1>Cantidad: {{order.quantity}}</h1><br>
-<h1>Total: ${{order.total}}</h1><br> 
+    <h1>Artículo: Bolsa {{get_product(order.productId).presentation}} {{get_product(order.productId).weight}}</h1><br>
+    <h1>Dirección: {{order.street}} {{order.number}}, {{order.colony}}, {{order.locality}}</h1><br>
+    <h1>CP: {{order.codigoPostal}}</h1><br>
+    <h1>Precio unitario: ${{order.total//order.quantity}}</h1><br>
+    <h1>Cantidad: {{order.quantity}}</h1><br>
+    <h1>Total: ${{order.total}}</h1><br>
 </div>
 <br><br>
 <a href="/">

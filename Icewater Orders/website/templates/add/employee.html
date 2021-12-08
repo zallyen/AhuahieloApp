@@ -5,7 +5,15 @@
 <br><br>
 <form method="post">
     <input type="text" name="name" placeholder="Nombre" required pattern="^[A-Za-zÑñ ]{0,50}$" title="Solo letras, máximo 50 caracteres."><br><br>
-    <input type="text" name="address" placeholder="Dirección" required pattern="^[A-Za-zñÑ #0-9]{0,40}$" title="Solo letras y números, máximo 40 caracteres."><br><br>
+    <input type="text" name="lastname1" placeholder="Apellido Paterno" id="" required pattern="^[A-Za-zÑñ ]{0,50}$" title="Solo letras, máximo 50 caracteres."><br><br>
+    <input type="text" name="lastname2" placeholder="Apellido Materno" id="" required pattern="^[A-Za-zÑñ ]{0,50}$" title="Solo letras, máximo 50 caracteres."><br><br>
+    <input type="text" style="text-transform:uppercase;" name="curp" placeholder="CURP" id="" required pattern="^[A-Za-zñÑ #0-9]{18,18}$" title="La CURP debe tener 18 caracteres"><br><br>
+    <input type="number" name="nss" placeholder="Número de seguro social" id="" required pattern="^[0-9]{11,11}$" title="El NSS debe tener 11 digitos" max="99999999999"><br><br>
+    <input type="text" name="street" placeholder="Calle" id="" required pattern="^[A-Za-zñÑ ]{0,40}$" title="Solo letras y números, máximo 40 caracteres."><br><br>
+    <input type="text" name="number" placeholder="Número" id="" required pattern="^[0-9]{0,10}$" title="Solo números, máximo 10 caracteres."><br><br>
+    <input type="text" name="colony" placeholder="Colonia" id="" required pattern="^[A-Za-zñÑ ]{0,40}$" title="Solo letras y números, máximo 40 caracteres."><br><br>
+    <input type="text" name="city" placeholder="Municipio" id="" required pattern="^[A-Za-zñÑ #0-9]{0,40}$" title="Solo letras y números, máximo 40 caracteres."><br><br>
+    <input type="text" name="codigoPostal" placeholder="Código Postal" id="" required pattern="^[0-9]{5,5}$" title="Solo números, máximo 10 caracteres."><br><br>
     <input type="text" name="telephone" placeholder="Teléfono" required pattern="^[0-9]{10,15}$" title="Solo números, minimo 10 caracteres y máximo 15."><br><br>
     <input type="email" name="email" placeholder="Email" id="" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"><br><br>
     <input type="date" name="date" placeholder="Fecha de nacimiento" id="" required><br><br>

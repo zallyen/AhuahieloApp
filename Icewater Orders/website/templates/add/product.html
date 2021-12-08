@@ -4,7 +4,8 @@
 <h1>Añadir producto</h1>
 <br><br>
 <form method="post">
-    <input type="text" name="name" placeholder="Nombre" required pattern="^[0-9A-Za-zÑñ ]{0,50}$" title="Solo letras, máximo 50 caracteres."><br><br>
+    <input type="text" name="presentation" id="presentation" placeholder="Presentación"><br><br>
+    <input type="number" name="weight" placeholder="Peso" id="" required min="0" max="100000"><br><br>
     <input type="number" name="price" placeholder="Precio" id="" required min="0" max="100000"><br><br>
     <input type="number" name="inventory" placeholder="Inventario" id="" required min="0" max="100000"><br><br>
     <button type="submit">Agregar producto</button>

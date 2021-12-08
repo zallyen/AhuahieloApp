@@ -5,9 +5,17 @@
 <br><br>
 <form method="POST" action="/admin/update-user/{{updateUser.id}}">
     <input type="text" name="name" placeholder="Nombre" id="" value="{{updateUser.name}}" required pattern="^[A-Za-zÑñ ]{0,50}$" title="Solo letras, máximo 50 caracteres."><br><br>
+    <input type="text" name="lastname1" placeholder="Apellido Paterno" id="" value="{{updateUser.lastname1}}" required pattern="^[A-Za-zÑñ ]{0,50}$" title="Solo letras, máximo 50 caracteres."><br><br>
+    <input type="text" name="lastname2" placeholder="Apellido Materno" id="" value="{{updateUser.lastname2}}" required pattern="^[A-Za-zÑñ ]{0,50}$" title="Solo letras, máximo 50 caracteres."><br><br>
+    <input type="text" style="text-transform:uppercase;" name="curp" placeholder="CURP" value="{{updateUser.curp}}" id="" required pattern="^[A-Za-zñÑ #0-9]{18,18}$" title="La CURP debe tener 18 caracteres"><br><br>
+    <input type="text" style="text-transform:uppercase;" name="rfc" placeholder="RFC" value="{{updateUser.rfc}}" id="" required pattern="^[A-Za-zñÑ #0-9]{12,13}$" title="El RFC solo puede tener 12 o 13 caracteres"><br><br>
     <input type="email" name="email" placeholder="Email" id="" value="{{updateUser.email}}" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"><br><br>
-    <input type="text" name="address" placeholder="Dirección" id="" value="{{updateUser.address}}" required pattern="^[A-Za-zñÑ #0-9]{0,40}$" title="Solo letras y números, máximo 40 caracteres."><br><br>
-    <input type="number" name="telephone" placeholder="Teléfono" id="" value="{{updateUser.telephone}}" pattern="^[0-9]{10,15}$" title="Solo números, minimo 10 caracteres y máximo 15."><br><br>
+    <input type="text" name="street" placeholder="Calle" id="" value="{{updateUser.street}}" required pattern="^[A-Za-zñÑ ]{0,40}$" title="Solo letras y números, máximo 40 caracteres."><br><br>
+    <input type="text" name="number" placeholder="Número" id="" value="{{updateUser.number}}" required pattern="^[0-9]{0,10}$" title="Solo números, máximo 10 caracteres."><br><br>
+    <input type="text" name="colony" placeholder="Colonia" id="" value="{{updateUser.colony}}" required pattern="^[A-Za-zñÑ #0-9]{0,40}$" title="Solo letras y números, máximo 40 caracteres."><br><br>
+    <input type="text" name="city" placeholder="Municipio" id="" value="{{updateUser.city}}" required pattern="^[A-Za-zñÑ #0-9]{0,40}$" title="Solo letras y números, máximo 40 caracteres."><br><br>
+    <input type="text" name="codigoPostal" placeholder="Código Postal" id="" value="{{updateUser.codigoPostal}}" required pattern="^[0-9]{5,5}$" title="Solo números, máximo 10 caracteres."><br><br>
+    <input type="text" name="telephone" placeholder="Teléfono" id="" value="{{updateUser.telephone}}" pattern="^[0-9+]{10,15}$" title="Solo números, minimo 10 caracteres y máximo 15."><br><br>
     <select name="type" id="type">
         <option value="{{updateUser.type}}">{{updateUser.type}}</option>
        
