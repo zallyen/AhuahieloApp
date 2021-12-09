@@ -165,33 +165,55 @@ def update_user(id):
         rfc = request.form.get('rfc')
         type = request.form.get('type')
         password = request.form.get('password')
-        try:
-            user = User(email=email, name=name, password=password, street=street, number=number, colony =colony, city=city, telephone=telephone, type=type, lastname1=lastname1, lastname2=lastname2, codigoPostal=codigoPostal, curp=curp, rfc=rfc)
-            user0 = User.query.filter_by(email=email).first()
-            user1 = User.query.filter_by(curp=curp).first()
-            user2 = User.query.filter_by(rfc=rfc).first()
+        user = User(email=email, name=name, password=password, street=street, number=number, colony =colony, city=city, telephone=telephone, type=type, lastname1=lastname1, lastname2=lastname2, codigoPostal=codigoPostal, curp=curp, rfc=rfc)
+            
+        user0 = User.query.filter_by(email=email).first()
+        user1 = User.query.filter_by(curp=curp).first()
+        user2 = User.query.filter_by(rfc=rfc).first()
+
+        row0 = User.query.filter_by(email=email).count()
+        row1 = User.query.filter_by(curp=curp).count()
+        row2= User.query.filter_by(rfc=rfc).count()
+ 
+        if row0 == 1 and row1 == 1 and row2 == 1:
             if user0.id != id or user1.id != id or user2.id != id:
                 flash('EL usuario ya existe')
             else:
-                updateUser.name = name
-                updateUser.lastname1 = lastname1
-                updateUser.lastname2 = lastname2
-                updateUser.email = email
-                updateUser.street = street
-                updateUser.number = number
-                updateUser.colony = colony
-                updateUser.city = city
-                updateUser.codigoPostal = codigoPostal
-                updateUser.telephone = telephone
-                updateUser.type = type
-                updateUser.curp = curp
-                updateUser.rfc = rfc
-                updateUser.password = password
-                db.session.commit()
-                flash('Usuario actualizado correctamente')
-                return redirect(url_for('admin.dashboard'))
-        except:
-            flash('Error: ya existe un usuario con alguno de esos datos')
+                    updateUser.name = name
+                    updateUser.lastname1 = lastname1
+                    updateUser.lastname2 = lastname2
+                    updateUser.email = email
+                    updateUser.street = street
+                    updateUser.number = number
+                    updateUser.colony = colony
+                    updateUser.city = city
+                    updateUser.codigoPostal = codigoPostal
+                    updateUser.telephone = telephone
+                    updateUser.type = type
+                    updateUser.curp = curp
+                    updateUser.rfc = rfc
+                    updateUser.password = password
+                    db.session.commit()
+                    flash('Usuario actualizado correctamente')
+                    return redirect(url_for('admin.dashboard'))
+        else:
+                    updateUser.name = name
+                    updateUser.lastname1 = lastname1
+                    updateUser.lastname2 = lastname2
+                    updateUser.email = email
+                    updateUser.street = street
+                    updateUser.number = number
+                    updateUser.colony = colony
+                    updateUser.city = city
+                    updateUser.codigoPostal = codigoPostal
+                    updateUser.telephone = telephone
+                    updateUser.type = type
+                    updateUser.curp = curp
+                    updateUser.rfc = rfc
+                    updateUser.password = password
+                    db.session.commit()
+                    flash('Usuario actualizado correctamente')
+                    return redirect(url_for('admin.dashboard'))
     updateUser = User.query.filter_by(id=id).first()
     if updateUser.type == 'Administrador':
         oType = 'Normal'
@@ -225,8 +247,31 @@ def update_employee(id):
             employee2 = Employee.query.filter_by(curp=curp).first()
             employee3 = Employee.query.filter_by(nss=nss).first()
 
-            if employee1.id != id or employee2.id != id or employee3.id != id:
-                flash('Error: algunos de los datos pertenecen a otro empleado')
+            row0 = Employee.query.filter_by(email=email).count()
+            row1 = Employee.query.filter_by(curp=curp).count()
+            row2= Employee.query.filter_by(nss=nss).count()
+
+            if row0 == 1 and row1 == 1 and row2 == 1: 
+                if employee1.id != id or employee2.id != id or employee3.id != id:
+                    flash('Error: algunos de los datos pertenecen a otro empleado')
+                else:
+                    updateEmployee.name = name
+                    updateEmployee.email = email
+                    updateEmployee.lastname1 = lastname1
+                    updateEmployee.lastname2 = lastname2
+                    updateEmployee.curp = curp
+                    updateEmployee.nss = nss
+                    updateEmployee.street = street
+                    updateEmployee.number = number
+                    updateEmployee.colony = colony
+                    updateEmployee.city = city
+                    updateEmployee.codigoPostal = codigoPostal
+                    updateEmployee.telephone = telephone
+                    updateEmployee.date = date
+                    updateEmployee.salary = salary
+                    db.session.commit()
+                    flash('Empleado actualizado correctamente')
+                    return redirect(url_for('admin.dashboard'))
             else:
                 updateEmployee.name = name
                 updateEmployee.email = email
